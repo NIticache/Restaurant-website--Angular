@@ -1,0 +1,43 @@
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="40"> 
+    <div fxFlex *ngIf="dish">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h3>{{dish.name | uppercase}}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+        <mat-card-content>
+          <p>{{dish.description}}
+          </p>
+        </mat-card-content>
+        
+      </mat-card>
+    </div>
+     
+  </div> 
+  
+  <div fxFlex="40" *ngIf="dish">
+    <!-- Just checking whether the dishes are there we can remove if loop no issues will be there -->
+    <mat-list >
+      <h1>Comments</h1>
+        <mat-list-item *ngFor="let comments of dish.comments">    
+          <!-- comments is avariable taking values from dish. comment    -->
+          <h4 matLine> {{comments.comment}} </h4>
+          <p matLine> {{comments.rating}} Stars </p>
+          <p matLine>
+            <span> --{{comments.author}} {{comments.date | date}}</span>
+          </p>
+        </mat-list-item>
+    </mat-list>
+  </div>
+
+</div>
